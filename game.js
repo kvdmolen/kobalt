@@ -1,14 +1,10 @@
 {
 	name: "game",
 	element: "div",
-	class(){
-		return "game " + this.state.winner ? "game-have-winner" : ""
-	},
+	class() => {"game " + this.state.winner ? "game-have-winner" : ""},
 	state: {
 		winner: 0,
-		player(){
-			return Math.round(Math.random()) + 1
-		}
+		player() => {Math.round(Math.random()) + 1}
 	},
 	children: [
 		{
@@ -19,9 +15,7 @@
 		{
 			element: "div",
 			class: "game-player",
-			content(){
-				return "Current player: " + this.state.player
-			}
+			content() => {"Current player: " + this.state.player}
 		},
 		{
 			element: "board"
@@ -29,16 +23,12 @@
 		{
 			element: "div",
 			class: "game-winner",
-			content(){
-				return "And the winner is: " + this.state.winner
-			}
+			content() => {"And the winner is: " + this.state.winner}
 		},
 		{
 			element: "mybutton",
 			class: "newgame",
-			if: function(){
-				return this.state.winner > 0
-			},
+			if() => {return this.state.winner > 0},
 			props: {
 				title: "New game",
 				icon: "fa fa-plus"
