@@ -28,7 +28,7 @@
 		{
 			element: "mybutton",
 			class: "newgame",
-			if() => {return this.state.winner > 0},
+			show() => {return this.state.winner > 0},
 			props: {
 				title: "New game",
 				icon: "fa fa-plus"
