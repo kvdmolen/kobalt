@@ -1,6 +1,6 @@
 import game from "./game.js"
 
-{
+var app = new Lcf({
 	name: "tictactoe",
 	title: "Tic Tac Toe",
 	state: {
@@ -54,4 +54,4 @@ import game from "./game.js"
 	{
 		element: "router"
 	}]
-}
+})
