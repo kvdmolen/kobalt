@@ -15,7 +15,8 @@
 	init: {
 		this.loadUser()
 	},
-	routes: [{
+	routes: [
+	{
 		name: "home",
 		path: "/",
 		component: "board",
@@ -25,10 +26,12 @@
 		}
 	}],
 	class: "bodyclass",
-	children: [{
+	children: [
+	{
 		element: "nav",
 		class: "mainmenu",
-		children: [{
+		children: [
+		{
 			element: "img",
 			class: "nav-img",
 			src: "/img/logo.png"
@@ -37,11 +40,10 @@
 			element: "ul",
 			class: "nav-menu",
 			children: [
-				{
-					element: "li",
-					class(){return "none"}		
-				}
-			]
+			{
+				element: "li",
+				class(){return "none"}		
+			}]
 		}]
 	},
 	{
