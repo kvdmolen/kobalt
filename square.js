@@ -8,10 +8,7 @@
 	state: {
 		entry: 0
 	},
-	click: "setEntry",
-	methods: {
-		setEntry(){
-			this.setState("entry", this.parent.state.currentPlayer)
-		}
+	click(){
+		this.setState("entry", this.parent.state.currentPlayer)
 	}
 }
