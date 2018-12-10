@@ -1,3 +1,5 @@
+import game from "./game.js"
+
 {
 	name: "tictactoe",
 	title: "Tic Tac Toe",
@@ -5,21 +7,24 @@
 		user: null
 	},
 	methods: {
-		login(){},
-		loadUser(){
+		login: () => {},
+		loadUser: () => {
 			this.$api.get("api/user").then((response)=> {
 				this.$state.set("user", response.data)
 			})
 		}
 	},
-	init: {
+	init: () => {
 		this.loadUser()
+	},
+	elements: {
+		game
 	},
 	routes: [
 	{
 		name: "home",
 		path: "/",
-		component: "board",
+		component: "game",
 		children: [],
 		meta: {
 			permalink: "https://"
@@ -42,7 +47,7 @@
 			children: [
 			{
 				element: "li",
-				class(){return "none"}		
+				class: () => {return "none"}		
 			}]
 		}]
 	},
