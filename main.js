@@ -1,3 +1,4 @@
+import Lcf from "./lcf.js"
 import game from "./game.js"
 
 var app = new Lcf({
