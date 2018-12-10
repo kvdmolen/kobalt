@@ -1,27 +1,25 @@
 {
-	name: "button",
-	element: "button",
-	props: {
-		icon: String
-		text: String
+	"name": "mybutton",
+	"element": "button",
+	"props": {
+		"icon": String
+		"title": String
 	},
-	state: {
-		active: false
+	"state": {
+		"active": false
 	},
-	class: function(){return "button " + this.state.active ? "button-active" : ""},
-	click: "toggle",
-	children: [
+	"children": [
 		{
-			element: "i",
-			class: "{fa fa-" + this.props.icon}"
+			"element": "i",
+			"class": "{'fa fa-' + this.props.icon}"
 		},
 		{
-			element: "span",
-			content: this.props.text
+			"element": "span",
+			"content": "{this.props.title}"
 		}
 	],
-	methods: {
-		toggle: function(){
+	"methods": {
+		"toggle": function(){
 			this.setState("active", !this.state.active)
 		}
 	}
