@@ -1,10 +1,10 @@
 export default {
 	name: "game",
 	element: "div",
-	class() => {return "game " + this.state.winner ? "game-have-winner" : ""},
+	class: () => {return "game " + this.state.winner ? "game-have-winner" : ""},
 	state: {
 		winner: 0,
-		player() => {return Math.round(Math.random()) + 1}
+		player: () => {return Math.round(Math.random()) + 1}
 	},
 	children: [
 		{
@@ -15,7 +15,7 @@ export default {
 		{
 			element: "div",
 			class: "game-player",
-			content() => {return "Current player: " + this.state.player}
+			content: () => {return "Current player: " + this.state.player}
 		},
 		{
 			element: "board"
@@ -23,17 +23,17 @@ export default {
 		{
 			element: "div",
 			class: "game-winner",
-			content() => {"And the winner is: " + this.state.winner}
+			content: () => {return "And the winner is: " + this.state.winner}
 		},
 		{
 			element: "mybutton",
 			class: "newgame",
-			show() => {return this.state.winner > 0},
+			show: () => {return this.state.winner > 0},
 			props: {
 				title: "New game",
 				icon: "fa fa-plus"
 			},
-			click(){
+			click: (){
 				this.setState("player", this.state.winner)
 				this.setState("winner", 0)
 			}
