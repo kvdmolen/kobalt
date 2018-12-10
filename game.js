@@ -33,7 +33,7 @@ export default {
 				title: "New game",
 				icon: "fa fa-plus"
 			},
-			click: (){
+			click: () => {
 				this.setState("player", this.state.winner)
 				this.setState("winner", 0)
 			}
