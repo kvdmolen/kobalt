@@ -15,42 +15,36 @@
 	init: {
 		this.loadUser()
 	},
-	routes: [
-		{
-			name: "home",
-			path: "/",
-			component: "board",
-			children: [],
-			meta: {
-				permalink: "https://"
-			}
+	routes: [{
+		name: "home",
+		path: "/",
+		component: "board",
+		children: [],
+		meta: {
+			permalink: "https://"
 		}
-	],
+	}],
 	class: "bodyclass",
-	children: [
-		{
-			element: "nav",
-			class: "mainmenu",
-			children: [
-				{
-					element: "img",
-					class: "nav-img",
-					src: "/img/logo.png"
-				},
-				{
-					element: "ul",
-					class: "nav-menu",
-					children: [
-						{
-							element: "li",
-							class(){return "none"}		
-						}
-					]
-				}
-			]
+	children: [{
+		element: "nav",
+		class: "mainmenu",
+		children: [{
+			element: "img",
+			class: "nav-img",
+			src: "/img/logo.png"
 		},
 		{
-			element: "router"
-		}	
-	]
+			element: "ul",
+			class: "nav-menu",
+			children: [
+				{
+					element: "li",
+					class(){return "none"}		
+				}
+			]
+		}]
+	},
+	{
+		element: "router"
+	}]
 }
