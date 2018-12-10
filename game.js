@@ -1,10 +1,10 @@
-{
+export default {
 	name: "game",
 	element: "div",
-	class() => {"game " + this.state.winner ? "game-have-winner" : ""},
+	class() => {return "game " + this.state.winner ? "game-have-winner" : ""},
 	state: {
 		winner: 0,
-		player() => {Math.round(Math.random()) + 1}
+		player() => {return Math.round(Math.random()) + 1}
 	},
 	children: [
 		{
@@ -15,7 +15,7 @@
 		{
 			element: "div",
 			class: "game-player",
-			content() => {"Current player: " + this.state.player}
+			content() => {return "Current player: " + this.state.player}
 		},
 		{
 			element: "board"
