@@ -5,8 +5,8 @@
 		user: null
 	},
 	methods: {
-		login: function(){},
-		loadUser: function(){
+		login(){},
+		loadUser(){
 			this.$api.get("api/user").then((response)=> {
 				this.$state.set("user", response.data)
 			})
@@ -43,7 +43,7 @@
 					children: [
 						{
 							element: "li",
-							class: function(){return this.}		
+							class(){return "none"}		
 						}
 					]
 				}
