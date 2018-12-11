@@ -1,7 +1,7 @@
-import Lcf from "./lcf.js"
-import game from "./game.js"
+import Kobalt from "./kobalt.js"
+import Game from "./game.js"
 
-var app = new Lcf({
+var App = new Kobalt({
 	name: "tictactoe",
 	title: "Tic Tac Toe",
 	state: {
