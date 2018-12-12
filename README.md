@@ -22,34 +22,36 @@ var App = new Kobalt({
 			}
 		}
 	},
-	content: [{
-		element: "p",
-		content: () => {
-			return "Player: " + this.$state.player
-		}
-	},{
-		element: "p",
-		content: () => {
-			return "Winner: " + this.$state.winner + ". Click to restart."
-		},
-		show: () => {
-			return this.$state.winner > 0
-		},
-		click: () => {
-			this.$resetState("winner")
-			this.$elements.Board1.$resetState("cells")
-		}
-	},{
-		element: "div",
-		class: "board",
-		content: {
-			element: "Board",
-			id: "Board1",
-			props: {
-				player: () => {return this.$state.player}
+	content: [
+		{
+			element: "p",
+			content: () => {
+				return "Player: " + this.$state.player
+			}
+		},{
+			element: "p",
+			content: () => {
+				return "Winner: " + this.$state.winner + ". Click to restart."
+			},
+			show: () => {
+				return this.$state.winner > 0
+			},
+			click: () => {
+				this.$resetState("winner")
+				this.$elements.Board1.$resetState("cells")
+			}
+		},{
+			element: "div",
+			class: "board",
+			content: {
+				element: "Board",
+				id: "Board1",
+				props: {
+					player: () => {return this.$state.player}
+				}
 			}
 		}
-	}]
+	]
 })
 
 let Board = {
