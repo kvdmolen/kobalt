@@ -14,6 +14,13 @@ var App = new Kobalt({
 	elements: {
 		Board
 	},
+	capture: {
+		Board1winner: (newvalue) => {
+			if(newvalue > 0){
+				this.$setState("winner", newvalue)
+			}
+		}
+	},
 	class: "boardgame",
 	children: [
 		{
@@ -31,10 +38,11 @@ var App = new Kobalt({
 			},
 			click: () => {
 				this.$resetState("winner")
-				this.$elements.Board.$resetState("cells")
+				this.$elements.Board1.$resetState("cells")
 			}
 		},{
 			element: "Board",
+			identification: "Board1",
 			props: {
 				player: () => {return this.$state.player}
 			}
@@ -71,9 +79,9 @@ let Board = {
 				click: () => {
 					this.$setState("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
 					if(this.isWinner()){
-						this.$setState("winner", this.$props.player)
+						this.$root.$setState("winner", this.$props.player)
 					}else{
-						this.$setState("player", (this.$props.player) % 2 + 1)
+						this.$root.$setState("player", (this.$props.player) % 2 + 1)
 					}
 				}
 			}
