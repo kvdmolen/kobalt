@@ -50,9 +50,9 @@ var App = new Kobalt({
 						return "player-" + $this.$state.board[this.$parent.$repeat.key + this.$repeat.key]
 					},
 					click: () => {
-						this.$setState("board."+ this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
+						this.$setState("board." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
 						this.checkWinner()
-						this.$setState("player", (this.$state.player + 1) % 2)
+						this.$setState("player", (this.$state.player) % 2 + 1)
 					}
 				}
 			]
