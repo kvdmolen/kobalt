@@ -65,7 +65,7 @@ var App = new Kobalt({
 
 ## API
 
-# License
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 
