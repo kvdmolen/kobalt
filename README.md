@@ -10,7 +10,7 @@ var App = new Kobalt({
 	state: {
 		player: 1,
 		winner: 0,
-		board: {A1:0,A2:0,A3:0,B1:0,B2:0,B3:0,C1:0,C2:0,C3:0}
+		cells: {A1:0, A2:0, A3:0, B1:0, B2:0, B3:0, C1:0, C2:0, C3:0}
 	},
 	methods: {
 		checkWinner: () => {
@@ -38,7 +38,7 @@ var App = new Kobalt({
 			},
 			click: () => {
 				this.$resetState("winner")
-				this.$resetState("board")
+				this.$resetState("cells")
 			}
 		},{
 			element: "Board"
@@ -57,10 +57,10 @@ let Board = {
 			class: "col",
 			repeat: ['1', '2', '3'],
 			class: () => {
-				return "player-" + $this.$state.board[this.$parent.$repeat.key + this.$repeat.key]
+				return "player-" + $this.$state.cells[this.$parent.$repeat.key + this.$repeat.key]
 			},
 			click: () => {
-				this.$setState("board." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
+				this.$setState("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
 				this.checkWinner()
 				this.$setState("player", (this.$state.player) % 2 + 1)
 			}
