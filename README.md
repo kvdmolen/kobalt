@@ -57,7 +57,7 @@ let Board = {
 			class: "col",
 			repeat: ['1', '2', '3'],
 			class: () => {
-				return "player-" + $this.$state.cells[this.$parent.$repeat.key + this.$repeat.key]
+				return "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key]
 			},
 			click: () => {
 				this.$setState("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
