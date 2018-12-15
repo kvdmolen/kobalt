@@ -7,47 +7,40 @@ import Kobalt from "./kobalt.js"
 
 var App = new Kobalt({
 	title: "Tic Tac Toe",
-	bodyclass: "boardgame",
+	class: "boardgame",
 	state: {
 		player: 1,
-		winner: 0
+		winner: 0,
+		cells: {A1:0, A2:0, A3:0, B1:0, B2:0, B3:0, C1:0, C2:0, C3:0}
 	},
 	elements: {
 		Board
 	},
-	capture: {
-		Board1winner: (newvalue) => {
-			if(newvalue > 0){
-				this.$setState("winner", newvalue)
-			}
-		}
-	},
 	content: [
 		{
 			element: "p",
-			content: () => {
+			content() {
 				return "Player: " + this.$state.player
 			}
 		},{
 			element: "p",
-			content: () => {
+			content() {
 				return "Winner: " + this.$state.winner + ". Click to restart."
 			},
-			show: () => {
+			show() {
 				return this.$state.winner > 0
 			},
-			click: () => {
-				this.$resetState("winner")
-				this.$elements.Board1.$resetState("cells")
+			click() {
+				this.$stateReset("winner")
+				this.$stateReset("cells")
 			}
 		},{
 			element: "div",
 			class: "board",
 			content: {
 				element: "Board",
-				id: "Board1",
 				props: {
-					player: () => {return this.$state.player}
+					player() {return this.$state.player}
 				}
 			}
 		}
@@ -60,10 +53,10 @@ let Board = {
 		player: Number
 	},
 	state: {
-		cells: {A1:0, A2:0, A3:0, B1:0, B2:0, B3:0, C1:0, C2:0, C3:0}
+		
 	},
 	methods: {
-		isWinner: () => {
+		isWinner() {
 			// Todo: calculate winner. If winner: return true
 			return false
 		}
@@ -74,17 +67,19 @@ let Board = {
 		repeat: ['A', 'B', 'C'],
 		content: {
 			element: "div",
-			class: "col",
+			class: "col cell",
+			content: "",
 			repeat: ['1', '2', '3'],
-			class: () => {
+			class() {
 				return "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key]
 			},
-			click: () => {
-				this.$setState("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
+			click() {
+				this.$state.commit("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
+				
 				if(this.isWinner()){
-					this.$root.$setState("winner", this.$props.player)
+					this.$stateCommit("winner", this.$props.player)
 				}else{
-					this.$root.$setState("player", (this.$props.player) % 2 + 1)
+					this.$stateCommit("player", (this.$props.player) % 2 + 1)
 				}
 			}
 		}
