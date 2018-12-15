@@ -5,7 +5,7 @@ Minimalistic & Precise Low Code Frontend Framework to build Scalable Web Apps
 ```javascript
 import Kobalt from "./kobalt.js"
 
-var App = new Kobalt({
+let App = new Kobalt({
 	title: "Tic Tac Toe",
 	class: "boardgame",
 	state: {
