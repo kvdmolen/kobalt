@@ -55,12 +55,12 @@ let Board = {
 	content: {
 		element: "div",
 		class: "row",
-		repeat: ['A', 'B', 'C'],
+		repeat: ["A", "B", "C"],
 		content: {
 			element: "div",
 			class: "col cell",
 			content: "",
-			repeat: ['1', '2', '3'],
+			repeat: ["1", "2", "3"],
 			class() => "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key],
 			click() {
 				this.$stateCommit("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
