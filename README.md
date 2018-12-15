@@ -66,7 +66,7 @@ let Board = {
 			repeat: ['1', '2', '3'],
 			class() => "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key],
 			click() {
-				this.$state.commit("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
+				this.$stateCommit("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
 				
 				if(this.isWinner()){
 					this.$stateCommit("winner", this.$props.player)
