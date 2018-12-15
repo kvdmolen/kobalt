@@ -22,12 +22,8 @@ let App = new Kobalt({
 			content() => "Player: " + this.$state.player
 		},{
 			element: "p",
-			content() {
-				return "Winner: " + this.$state.winner + ". Click to restart."
-			},
-			show() {
-				return this.$state.winner > 0
-			},
+			content() => "Winner: " + this.$state.winner + ". Click to restart.",
+			show() => this.$state.winner > 0,
 			click() {
 				this.$stateReset("winner")
 				this.$stateReset("cells")
@@ -38,7 +34,7 @@ let App = new Kobalt({
 			content: {
 				element: "Board",
 				props: {
-					player() {return this.$state.player}
+					player() => this.$state.player
 				}
 			}
 		}
@@ -68,9 +64,7 @@ let Board = {
 			class: "col cell",
 			content: "",
 			repeat: ['1', '2', '3'],
-			class() {
-				return "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key]
-			},
+			class() => "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key],
 			click() {
 				this.$state.commit("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
 				
