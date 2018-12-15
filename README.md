@@ -25,10 +25,9 @@ let App = new Kobalt({
 		}	
 	},
 	captureStateSet(objname, path, newvalue) {
-		this.$http.post("/game/" + this.$state.gameid + "/cell/" + objname, {value: newvalue}).then(response => {
-			this.$stateCommit("cells." + objname, response.data)
-		})		
 		this.$stateCommit(path, newvalue)
+		this.$http.post("/game/" + this.$state.gameid + "/" + path, {value: newvalue})
+			.then(response => {})		
 	},
 	elements: {
 		Board
