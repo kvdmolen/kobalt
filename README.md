@@ -46,9 +46,6 @@ let Board = {
 	props: {
 		player: Number
 	},
-	state: {
-		
-	},
 	methods: {
 		isWinner() {
 			// Todo: calculate winner. If winner: return true
