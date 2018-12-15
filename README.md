@@ -19,9 +19,7 @@ let App = new Kobalt({
 	content: [
 		{
 			element: "p",
-			content() {
-				return "Player: " + this.$state.player
-			}
+			content() => "Player: " + this.$state.player
 		},{
 			element: "p",
 			content() {
