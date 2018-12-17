@@ -1,6 +1,58 @@
 import Kobalt from "./kobalt.js"
 import Game from "./game.js"
 
+import state from "./state.js"
+
+{
+	state,
+	
+}
+
+{
+	state: {
+		views: {
+			type: Array,
+			resource: {
+				method: "get",
+				url: "/views?page=" + this.$state.page + "&sort=" & this.props.sort,
+				response(data) {this.$commit("views", response.data.data)}
+			},
+			props: {
+				sort: Number
+			},
+			add: {
+				method: "get",
+				url: "/views?page=" + this.$state.page,				
+			}
+		},
+		page: {
+			type: Number,
+			default: 0,
+			set:
+		},
+		user: Number
+	}
+}
+
+comp
+
+repeat: this.$state.views.data,
+click(){
+	// Add view
+	this.$methods.viewAdd({name: inputvalue}, (data) => {
+		this.$state.views.reload({sort: 1})
+	})
+)
+
+
+
+
+
+
+
+
+
+
 var App = new Kobalt({
 	name: "tictactoe",
 	title: "Tic Tac Toe",
