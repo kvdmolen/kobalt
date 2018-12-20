@@ -8,29 +8,53 @@ import Kobalt from "./kobalt.js"
 let App = new Kobalt({
 	title: "Tic Tac Toe",
 	class: "boardgame",
+	store: {
+		gameid: {
+			type: Number,
+			default() => Math.random()
+		},
+		player: {
+			type: Number,
+			default: 1
+		},
+		cells: {
+			type: Array,
+			methods: {
+				load() {
+					this.$http.get("/gameid/" + this.$state.game + "/cells").then(response => {
+						this.$stateCommit("cells", response.data) // {A1: 0, A2: 1, A3: 0, ... }
+					})
+				},
+				setmove(cell) {
+					this.$http.post("/gameid/" + this.$state.game + "/cells/" cell, {player: this.$state.player}).then(response => {
+						this.$stateCommit("cells", response.data) // {A1: 0, A2: 1, A3: 0, ... }
+						if(this.isWinner()){
+							this.$setState("winner", this.$props.player)
+						}else{
+							this.$setState("player", (this.$props.player) % 2 + 1)
+						}
+						
+					})
+				}
+			},
+			events: {
+				newmove() {
+					this.load()
+				}
+			}
+		}
+	},
 	state: {
-		player: 1,
-		winner: 0,
-		gameid() => Math.random()
-		cells: {A1:0, A2:0, A3:0, B1:0, B2:0, B3:0, C1:0, C2:0, C3:0}
-	},
-	captureStateGet(obj, path) {
-		if(!obj){
-			this.$http.get("/game/" + this.$state.gameid).then(response => {
-				this.$stateCommit("cells", response.data)
-				return this.$state.cells
-			})
-		}else{
-			return this.$state.cells
-		}	
-	},
-	captureStateSet(objname, path, newvalue) {
-		this.$stateCommit(path, newvalue)
-		this.$http.post("/game/" + this.$state.gameid + "/" + path, {value: newvalue})
-			.then(response => {})		
+		winner: 0
 	},
 	elements: {
 		Board
+	},
+	methods: {
+		isWinner() {
+			// Todo: calculate winner. If winner: return true
+			return false
+		}
 	},
 	content: [
 		{
@@ -42,7 +66,8 @@ let App = new Kobalt({
 			show() => this.$state.winner > 0,
 			click() {
 				this.$stateReset("winner")
-				this.$stateReset("cells")
+				this.$storeReset("gameid")
+				this.$store.cells.load()
 			}
 		},{
 			element: "div",
@@ -50,7 +75,7 @@ let App = new Kobalt({
 			content: {
 				element: "Board",
 				props: {
-					player() => this.$state.player
+					winner() => this.$state.winner
 				}
 			}
 		}
@@ -60,13 +85,7 @@ let App = new Kobalt({
 let Board = {
 	title: "Board",
 	props: {
-		player: Number
-	},
-	methods: {
-		isWinner() {
-			// Todo: calculate winner. If winner: return true
-			return false
-		}
+		winner: Number
 	},
 	content: {
 		element: "div",
@@ -79,13 +98,7 @@ let Board = {
 			repeat: ["1", "2", "3"],
 			class() => "player-" + this.$state.cells[this.$parent.$repeat.key + this.$repeat.key],
 			click() {
-				this.$setState("cells." + this.$parent.$repeat.key + this.$repeat.key, this.$state.player)
-				
-				if(this.isWinner()){
-					this.$setState("winner", this.$props.player)
-				}else{
-					this.$setState("player", (this.$props.player) % 2 + 1)
-				}
+				this.$store.setmove(this.$parent.$repeat.key + this.$repeat.key)			
 			}
 		}
 	}
